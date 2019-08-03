@@ -2,6 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import withFirebaseAuth from 'react-with-firebase-auth'
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from './firebaseConfig.js'
+
 function App() {
   return (
     <div className="App">
