@@ -76,13 +76,15 @@
 
 
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import UserForm from './userForm.js';
+import Login from './login.js';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -99,14 +101,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {
             user
               ? <div>
                   <p>Hello, {user.email}</p>
                 </div>
               : <div>
-                  <p>Please sign in.</p>
+
                 </div>
           }
 
@@ -114,10 +116,14 @@ class App extends Component {
             user
               ? <button onClick={signOut}>Sign out</button>
               : <div>
-                  <button onClick={signInWithGoogle}>Sign in with Google</button><br></br>
-                  <UserForm onSubmit={signInWithEmailAndPassword} />
-                  <p>create user</p>
-                  <UserForm onSubmit={createUserWithEmailAndPassword} />
+                  <Router>
+                    <Route exact path='/' render={props => <Login
+                      {...props}
+                      signInWithGoogle={signInWithGoogle}
+                      signInWithEmailAndPassword={signInWithEmailAndPassword}
+                    />} />
+                    <Route exact path='/signUp' component={UserForm} />
+                  </Router>
                 </div>
           }
         </header>
