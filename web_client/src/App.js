@@ -85,6 +85,7 @@ import firebaseConfig from './firebaseConfig';
 import './App.css';
 import UserForm from './userForm.js';
 import Login from './login.js';
+import SignUp from './signUp.js';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -122,7 +123,10 @@ class App extends Component {
                       signInWithGoogle={signInWithGoogle}
                       signInWithEmailAndPassword={signInWithEmailAndPassword}
                     />} />
-                    <Route exact path='/signUp' component={UserForm} />
+                    <Route exact path='/signUp' render={props => <SignUp 
+                      {...props}
+                      createUserWithEmailAndPassword={createUserWithEmailAndPassword}
+                    />} />
                   </Router>
                 </div>
           }
