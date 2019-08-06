@@ -75,7 +75,7 @@
 // })(App);
 
 
-import React, { Component } from 'react';
+import React, { Component, history } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
 import * as firebase from 'firebase/app';
@@ -86,6 +86,7 @@ import './App.css';
 import UserForm from './userForm.js';
 import Login from './login.js';
 import SignUp from './signUp.js';
+
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -98,6 +99,12 @@ class App extends Component {
       signInWithEmailAndPassword,
       createUserWithEmailAndPassword,
     } = this.props;
+
+    //  signUpAndIn = () => {
+    //   createUserWithEmailAndPassword();
+    //   window.location.reload();
+    //   history.push('/');
+    // }
 
     return (
       <div className="App">
@@ -115,8 +122,11 @@ class App extends Component {
 
           {
             user
-              ? <button onClick={signOut}>Sign out</button>
+              ? <div>
+                <button onClick={signOut}>Sign Out</button>
+              </div>
               : <div>
+                  <h2>PMQ</h2>
                   <Router>
                     <Route exact path='/' render={props => <Login
                       {...props}
