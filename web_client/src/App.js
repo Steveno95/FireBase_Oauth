@@ -76,7 +76,7 @@
 
 
 import React, { Component, history } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import withFirebaseAuth from 'react-with-firebase-auth'
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -84,13 +84,35 @@ import firebaseConfig from './firebaseConfig';
 // import logo from './logo.svg';
 import './App.css';
 import UserForm from './userForm.js';
-import Login from './login.js';
-import SignUp from './signUp.js';
+// import Login from './login.js';
+// import SignUp from './signUp.js';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
 
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      modalShow: false,
+    }
+  }
+
+  handleClose() {
+    this.setState({ modalShow: false });
+  }
+
+  handleShow() {
+    this.setState({ modalShow: true });
+  }
+
   render() {
     const {
       user,
@@ -100,44 +122,37 @@ class App extends Component {
       createUserWithEmailAndPassword,
     } = this.props;
 
-    //  signUpAndIn = () => {
-    //   createUserWithEmailAndPassword();
-    //   window.location.reload();
-    //   history.push('/');
-    // }
-
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {
             user
               ? <div>
                   <p>Hello, {user.email}</p>
                 </div>
               : <div>
-
+                  <p>Please Log In.</p>
                 </div>
           }
 
           {
             user
-              ? <div>
-                <button onClick={signOut}>Sign Out</button>
-              </div>
+              ? <button onClick={signOut}>Sign out</button>
               : <div>
-                  <h2>PMQ</h2>
-                  <Router>
-                    <Route exact path='/' render={props => <Login
-                      {...props}
-                      signInWithGoogle={signInWithGoogle}
-                      signInWithEmailAndPassword={signInWithEmailAndPassword}
-                    />} />
-                    <Route exact path='/signUp' render={props => <SignUp 
-                      {...props}
-                      createUserWithEmailAndPassword={createUserWithEmailAndPassword}
-                    />} />
-                  </Router>
+                  <button onClick={signInWithGoogle}>Sign in with Google</button><br></br>
+                  <UserForm onSubmit={signInWithEmailAndPassword} /><br></br>
+                  <button onClick={this.handleShow}>Sign Up</button>
+                  <Modal show={this.state.modalShow} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Enter Email and Password</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <UserForm onSubmit={createUserWithEmailAndPassword} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={this.handleClose}>Close</Button>
+                    </Modal.Footer>
+                  </Modal>
                 </div>
           }
         </header>
