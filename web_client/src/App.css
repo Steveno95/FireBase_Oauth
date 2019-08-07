@@ -48,6 +48,17 @@
 
 .userForm {
   margin-top: 15px;
-  border: 2px solid black;
+  height: 30px;
+}
+
+.password {
+  margin-right: 50px;
+}
+
+.button {
+  height: 50px;
+  width: 150px;
+  font-size: 20px;
+  border-radius: 5px;
 }
 

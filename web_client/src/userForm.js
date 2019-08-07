@@ -28,12 +28,12 @@ const UserForm = ({
 }) => (
   <React.Fragment>
     <Field>
-      email: <Input value={email} onChange={setEmail} />
+      Email: <Input className='userForm' value={email} onChange={setEmail} />
     </Field>
     <Field>
-      password: <Input value={password} onChange={setPassword} type="password" />
+      Password: <Input className='userForm password' value={password} onChange={setPassword} type="password" />
     </Field>
-    <SubmitButton onClick={() => onSubmit(email, password)} />
+    <SubmitButton className='userForm button' onClick={() => onSubmit(email, password)} />
   </React.Fragment>
 );
 
