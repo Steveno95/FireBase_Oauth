@@ -131,7 +131,7 @@ class App extends Component {
                   <p>Hello, {user.email}</p>
                 </div>
               : <div>
-                  <p>Please Log In.</p>
+                  <p className='p'>Please Log In.</p>
                 </div>
           }
 

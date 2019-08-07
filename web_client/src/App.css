@@ -32,6 +32,10 @@
   }
 }
 
+.p {
+  margin-right: 5px;
+}
+
 .buttons {
   height: 60px;
   width: 200px;
