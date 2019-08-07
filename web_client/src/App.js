@@ -139,9 +139,9 @@ class App extends Component {
             user
               ? <button onClick={signOut}>Sign out</button>
               : <div>
-                  <button onClick={signInWithGoogle}>Sign in with Google</button><br></br>
+                  <button className='buttons' onClick={signInWithGoogle}>Sign in with Google</button><br></br>
                   <UserForm onSubmit={signInWithEmailAndPassword} /><br></br>
-                  <button onClick={this.handleShow}>Sign Up</button>
+                  <button className='buttons sign-up' onClick={this.handleShow}>Sign Up</button>
                   <Modal show={this.state.modalShow} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                     <Modal.Title>Enter Email and Password</Modal.Title>

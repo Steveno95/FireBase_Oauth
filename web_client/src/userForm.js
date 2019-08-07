@@ -1,6 +1,7 @@
 import React from 'react';
 import compose from 'recompose/compose';
 import withState from 'recompose/withState';
+import './App.css';
 
 const Field = ({ children }) =>
   <React.Fragment>

@@ -31,3 +31,23 @@
     transform: rotate(360deg);
   }
 }
+
+.buttons {
+  height: 60px;
+  width: 200px;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.sign-up {
+  height: 50px;
+  width: 150px;
+  margin-top: 20px;
+}
+
+.userForm {
+  margin-top: 15px;
+  border: 2px solid black;
+}
+
