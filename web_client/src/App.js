@@ -137,7 +137,7 @@ class App extends Component {
 
           {
             user
-              ? <button onClick={signOut}>Sign out</button>
+              ? <button className='sign-out' onClick={signOut}>Sign out</button>
               : <div>
                   <button className='buttons' onClick={signInWithGoogle}>Sign in with Google</button><br></br>
                   <UserForm className='userForm' onSubmit={signInWithEmailAndPassword} /><br></br>
